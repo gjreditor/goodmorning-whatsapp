@@ -26,4 +26,4 @@ jobs:
           GREENAPI_ID: ${{ secrets.GREENAPI_ID }}
           GREENAPI_TOKEN: ${{ secrets.GREENAPI_TOKEN }}
           WHATSAPP_NUMBER: ${{ secrets.WHATSAPP_NUMBER }}
-        run: python goodmorning.py
+        run: python goodmorningOnly1Image.py
