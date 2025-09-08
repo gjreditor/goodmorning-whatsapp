@@ -1,0 +1,29 @@
+name: Daily Good Morning WhatsApp
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # Runs daily at 8:30 AM IST (03:00 UTC)
+  workflow_dispatch:      # Allow manual trigger
+
+jobs:
+  goodmorning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GREENAPI_ID: ${{ secrets.GREENAPI_ID }}
+          GREENAPI_TOKEN: ${{ secrets.GREENAPI_TOKEN }}
+          WHATSAPP_NUMBER: ${{ secrets.WHATSAPP_NUMBER }}
+        run: python goodmorning.py
